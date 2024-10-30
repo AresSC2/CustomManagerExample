@@ -1,6 +1,12 @@
 from typing import Optional
 
 from ares import AresBot
+from ares.managers.manager_mediator import ManagerMediator
+from ares.managers.hub import Hub
+
+from ares.managers.manager import Manager
+
+from bot.worker_rush_manager import WorkerRushManager
 
 
 class MyBot(AresBot):
@@ -14,6 +20,29 @@ class MyBot(AresBot):
             specified elsewhere
         """
         super().__init__(game_step_override)
+
+    def register_managers(self) -> None:
+        """
+        Override the default `register_managers` in Ares, so we can
+        add our own managers.
+        """
+        # if we override this we have to setup the mediator
+        manager_mediator = ManagerMediator()
+
+        # add custom managers as `additional_managers`
+        additional_managers: list[Manager] = [
+            WorkerRushManager(self, self.config, manager_mediator),
+        ]
+
+        # we also have to setup the manager hub
+        # pass in `additional_managers` to the manager
+        # custom managers will run after ares managers
+        self.manager_hub = Hub(
+            self, self.config, manager_mediator, additional_managers=additional_managers
+        )
+
+        self.manager_hub.init_managers()
+
 
     async def on_step(self, iteration: int) -> None:
         await super(MyBot, self).on_step(iteration)
