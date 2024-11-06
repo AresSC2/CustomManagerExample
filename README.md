@@ -16,7 +16,7 @@ Before proceeding, ensure the following prerequisites are installed:
 - [Poetry](https://python-poetry.org/) 
 - [Git](https://git-scm.com/)
 - [Starcraft 2](https://starcraft2.com/en-gb/) 
-- [Maps](https://sc2ai.net/wiki/maps/) Ensure maps are moved to the correct folder as suggested in this wiki.
+- [Maps](https://aiarena.net/wiki/maps/) Ensure maps are moved to the correct folder as suggested in this wiki.
 
 
 **Additional:**
@@ -81,7 +81,7 @@ If everything has worked thus far, open up `bot/main.py` and delve into the ex
 
 An `ares-sc2` bot is a [python-sc2](https://github.com/BurnySc2/python-sc2) bot by default, meaning any examples or documentation from that repository equally relevant here.
 
-## Uploading to [AiArena](https://www.sc2ai.com/)
+## Uploading to [AiArena](https://aiarena.net/)
 
 ### Generating a ladder zip
 Included in the repository is a convenient script named `scripts/create_ladder_zip.py`. 
@@ -102,7 +102,7 @@ Ladder zips can also be built on a debian based OS, with docker or via WSL.
 
 ### Upload to aiarena
 The GitHub workflow includes an optional step to automatically upload the ladder-zip.zip artifact from 
-the previous step to the [AiArena ladder](https://www.sc2ai.com/). This feature is disabled by default. 
+the previous step to the [AiArena ladder](https://aiarena.net/). This feature is disabled by default. 
 To enable it, follow these steps:
 
 1. Set `AutoUploadToAiarena: True` in `config.yml`.
